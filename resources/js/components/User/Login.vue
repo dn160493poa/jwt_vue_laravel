@@ -23,6 +23,7 @@ export default {
             .then( res => {
                 localStorage.setItem('access_token', res.data.access_token)
                 //alternative is - document.cookie = `access_token = ${res.data.access_token}`
+                this.$router.push({ name: 'user.personal' })
             })
         }
     }
