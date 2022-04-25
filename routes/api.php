@@ -28,8 +28,10 @@ Route::group(['middleware' => 'api', 'prefix' => 'auth'
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
 
-    Route::group(['namespace' => 'Fruit', 'prefix' => 'fruits'], function (){
-        Route::get('/', [IndexController::class, '__invoke']);
+    Route::group(['middleware' => 'auth:api'], function (){
+        Route::group(['namespace' => 'Fruit', 'prefix' => 'fruits'], function (){
+            Route::get('/', [IndexController::class, '__invoke']);
+        });
     });
 });
 
